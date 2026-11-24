@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaunchKit Mini — Free SEO Meta, OG, robots.txt &amp; sitemap.xml Generator</title>
+  <meta name="description" content="Generate production-ready HTML meta tags, Open Graph &amp; Twitter Cards, robots.txt, and sitemap.xml in 3 minutes. Free launch utility for indie hackers." />
+  <link rel="canonical" href="https://nban38.github.io/launchkit-mini/" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nban38.github.io/launchkit-mini/" />
+  <meta property="og:title" content="LaunchKit Mini — Free SEO Meta, OG, robots.txt &amp; sitemap.xml Generator" />
+  <meta property="og:description" content="Generate production-ready HTML meta tags, Open Graph &amp; Twitter Cards, robots.txt, and sitemap.xml in 3 minutes. Free launch utility for indie hackers." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LaunchKit Mini — Free SEO Meta, OG, robots.txt &amp; sitemap.xml Generator" />
+  <meta name="twitter:description" content="Generate production-ready HTML meta tags, Open Graph &amp; Twitter Cards, robots.txt, and sitemap.xml in 3 minutes. Free launch utility for indie hackers." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-muted: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --success: #059669;
+      --success-soft: #ecfdf5;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.04);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+    }
+
+    /* Header */
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+    }
+
+    .btn:hover {
+      background: var(--surface-muted);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 0.8rem;
+    }
+
+    .btn-copied {
+      background: var(--success-soft);
+      border-color: #a7f3d0;
+      color: var(--success);
+    }
+
+    /* Main Grid */
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 920px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+    }
+
+    /* Form */
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 560px) {
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .label-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hint {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+
+    .hint.warn {
+      color: #b45309;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 9px 11px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color 0.15s ease;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+      line-height: 1.45;
+    }
+
+    textarea.mono {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+    }
+
+    .color-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    input[type="color"] {
+      width: 40px;
+      height: 38px;
+      padding: 2px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    details.advanced-box {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: 4px;
+    }
+
+    details.advanced-box summary {
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    details.advanced-box summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.advanced-box[open] summary {
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    /* Right Column Stack */
+    .right-stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    /* Social Card Preview */
+    .preview-card {
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      max-width: 520px;
+    }
+
+    .preview-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1200 / 630;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .preview-fallback {
+      padding: 24px;
+      text-align: center;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-fallback-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #e2e8f0;
+    }
+
+    .preview-fallback-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      max-width: 360px;
+      word-break: break-word;
+    }
+
+    .preview-body {
+      padding: 12px 14px 14px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .preview-domain {
+      font-size: 0.76rem;
+      color: var(--text-subtle);
+      text-transform: lowercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .preview-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .preview-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Tabs & Code Output */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface-muted);
+      padding: 4px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1 1 auto;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    .tab-btn[aria-selected="true"] {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .panel-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .panel-meta {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    .panel-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    pre.code-block {
+      margin: 0;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      max-height: 360px;
+      white-space: pre;
+      tab-size: 2;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Pro CTA Banner */
+    .pro-banner {
+      margin-top: 28px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .pro-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(59, 130, 246, 0.22);
+      color: #93c5fd;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .pro-banner h2 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .pro-banner p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      max-width: 680px;
+    }
+
+    .pro-cta {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      color: #fff;
+      padding: 11px 18px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .pro-cta:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+    }
+
+    /* Dialog */
+    dialog.pro-dialog {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0;
+      max-width: 520px;
+      width: calc(100% - 32px);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+      color: var(--text);
+    }
+
+    dialog.pro-dialog::backdrop {
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(2px);
+    }
+
+    .dialog-head {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .dialog-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .dialog-body {
+      padding: 18px 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .dialog-list {
+      margin: 12px 0 16px;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    .dialog-list li {
+      margin-bottom: 6px;
+    }
+
+    .dialog-foot {
+      padding: 14px 20px;
+      background: var(--surface-muted);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">LK</div>
+        <div>
+          <h1>LaunchKit Mini — Free Launch SEO Generator</h1>
+          <p>Generate Meta / OG / Twitter tags, <code>robots.txt</code>, and <code>sitemap.xml</code> in 3 minutes.</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" class="btn btn-sm" id="loadSampleBtn">Load Example</button>
+        <button type="button" class="btn btn-sm" id="resetBtn">Reset</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <!-- Left: Input Form -->
+      <section class="card" aria-labelledby="form-heading">
+        <div class="card-header">
+          <h2 class="card-title" id="form-heading">1. Project Details</h2>
+          <span class="card-subtitle">Updates live as you type</span>
+        </div>
+
+        <form class="form-grid" id="generatorForm" novalidate>
+          <div class="field">
+            <div class="label-row">
+              <label for="projectName">Project Name</label>
+              <span class="hint" id="titleCount">0 / 60</span>
+            </div>
+            <input type="text" id="projectName" name="projectName" placeholder="e.g. LaunchKit Mini" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label for="description">One-Line Description (Meta &amp; OG)</label>
+              <span class="hint" id="descCount">0 / 160</span>
+            </div>
+            <textarea id="description" name="description" rows="3" placeholder="e.g. Ship your SaaS launch SEO tags, landing page, and launch copy in 48 hours."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="domainUrl">Domain URL</label>
+            <input type="url" id="domainUrl" name="domainUrl" placeholder="https://yourapp.com" autocomplete="url" />
+          </div>
+
+          <div class="field">
+            <label for="ogImageUrl">OG Image URL <span class="hint">(1200×630 recommended)</span></label>
+            <input type="url" id="ogImageUrl" name="ogImageUrl" placeholder="https://yourapp.com/og-image.png" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="themeColorHex">Theme Color</label>
+              <div class="color-input-wrap">
+                <input type="color" id="themeColorPicker" aria-label="Pick theme color" value="#2563eb" />
+                <input type="text" id="themeColorHex" name="themeColor" value="#2563eb" maxlength="7" aria-label="Theme color hex code" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="twitterHandle">Twitter / X Handle</label>
+              <input type="text" id="twitterHandle" name="twitterHandle" placeholder="@yourhandle" autocomplete="off" />
+            </div>
+          </div>
+
+          <details class="advanced-box" open>
+            <summary>
+              <span>Sitemap &amp; Robots Options</span>
+              <span class="hint">Paths &amp; crawl rules</span>
+            </summary>
+            <div class="form-grid">
+              <div class="field">
+                <label for="sitemapPaths">Sitemap Paths <span class="hint">(one path per line)</span></label>
+                <textarea id="sitemapPaths" name="sitemapPaths" class="mono" rows="4" placeholder="/&#10;/pricing&#10;/docs&#10;/blog"></textarea>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="changefreq">Default Change Frequency</label>
+                  <select id="changefreq" name="changefreq">
+                    <option value="weekly">weekly</option>
+                    <option value="daily">daily</option>
+                    <option value="monthly">monthly</option>
+                    <option value="yearly">yearly</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="disallowPaths">Robots Disallow <span class="hint">(comma-separated)</span></label>
+                  <input type="text" id="disallowPaths" name="disallowPaths" placeholder="/api/, /admin/" />
+                </div>
+              </div>
+            </div>
+          </details>
+        </form>
+      </section>
+
+      <!-- Right: Preview & Output Tabs -->
+      <div class="right-stack">
+        <!-- Social Card Preview -->
+        <section class="card" aria-labelledby="preview-heading">
+          <div class="card-header">
+            <h2 class="card-title" id="preview-heading">2. Live Social Share Preview</h2>
+            <span class="card-subtitle">X / LinkedIn / Slack card</span>
+          </div>
+
+          <article class="preview-card" aria-label="Social share card preview">
+            <div class="preview-media" id="previewMedia">
+              <img id="previewImg" alt="Open Graph preview" hidden />
+              <div class="preview-fallback" id="previewFallback">
+                <span class="preview-fallback-pill" id="previewFallbackBadge">1200 × 630 OG Preview</span>
+                <div class="preview-fallback-title" id="previewFallbackTitle">Your Project Name</div>
+              </div>
+            </div>
+            <div class="preview-body">
+              <div class="preview-domain" id="previewDomain">yourapp.com</div>
+              <div class="preview-title" id="previewTitle">Your Project Name</div>
+              <div class="preview-desc" id="previewDesc">Your one-line description will appear here when shared on social media.</div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Output Generator Tabs -->
+        <section class="card" aria-labelledby="output-heading">
+          <div class="card-header">
+            <h2 class="card-title" id="output-heading">3. Generated Launch Files</h2>
+            <span class="card-subtitle">Copy or download directly</span>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Generated output files">
+            <button type="button" class="tab-btn" role="tab" id="tab-meta" aria-controls="panel-meta" aria-selected="true" tabindex="0">HTML Meta / OG</button>
+            <button type="button" class="tab-btn" role="tab" id="tab-robots" aria-controls="panel-robots" aria-selected="false" tabindex="-1">robots.txt</button>
+            <button type="button" class="tab-btn" role="tab" id="tab-sitemap" aria-controls="panel-sitemap" aria-selected="false" tabindex="-1">sitemap.xml</button>
+          </div>
+
+          <div id="panel-meta" role="tabpanel" aria-labelledby="tab-meta">
+            <div class="panel-toolbar">
+              <span class="panel-meta">Paste inside <code>&lt;head&gt;...&lt;/head&gt;</code></span>
+              <div class="panel-actions">
+                <button type="button" class="btn btn-primary btn-sm" data-copy-target="metaCode">Copy HTML Tags</button>
+              </div>
+            </div>
+            <pre class="code-block"><code id="metaCode"></code></pre>
+          </div>
+
+          <div id="panel-robots" role="tabpanel" aria-labelledby="tab-robots" hidden>
+            <div class="panel-toolbar">
+              <span class="panel-meta">Save at root: <code>/robots.txt</code></span>
+              <div class="panel-actions">
+                <button type="button" class="btn btn-sm" data-copy-target="robotsCode">Copy</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadRobotsBtn">Download robots.txt</button>
+              </div>
+            </div>
+            <pre class="code-block"><code id="robotsCode"></code></pre>
+          </div>
+
+          <div id="panel-sitemap" role="tabpanel" aria-labelledby="tab-sitemap" hidden>
+            <div class="panel-toolbar">
+              <span class="panel-meta" id="sitemapStats">Save at root: <code>/sitemap.xml</code></span>
+              <div class="panel-actions">
+                <button type="button" class="btn btn-sm" data-copy-target="sitemapCode">Copy</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadSitemapBtn">Download sitemap.xml</button>
+              </div>
+            </div>
+            <pre class="code-block"><code id="sitemapCode"></code></pre>
+          </div>
+
+          <div class="sr-only" aria-live="polite" id="liveStatus"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Pro CTA Banner -->
+    <aside class="pro-banner" aria-label="LaunchKit Mini Pro bundle">
+      <div>
+        <span class="pro-badge">LaunchKit Mini Pro — $9</span>
+        <h2>Want to launch your whole product in 48 hours?</h2>
+        <p>Get the 48h Launch Checklist, 2 single-file responsive SaaS Landing Page templates (Minimal &amp; Dark), and non-spam PH / Reddit / HN / X launch copy templates.</p>
+      </div>
+      <button type="button" class="btn pro-cta" id="openProDialogBtn">Explore $9 Pro Bundle →</button>
+    </aside>
+  </div>
+
+  <dialog class="pro-dialog" id="proDialog" aria-labelledby="proDialogTitle">
+    <div class="dialog-head">
+      <h3 id="proDialogTitle">LaunchKit Mini Pro ($9 One-Time)</h3>
+      <button type="button" class="btn btn-sm" id="closeProDialogBtn" aria-label="Close modal">Close</button>
+    </div>
+    <div class="dialog-body">
+      <p>Skip blank-page syndrome and ship cleanly with zero build dependencies:</p>
+      <ul class="dialog-list">
+        <li><strong>01-48h-launch-checklist.md</strong> — D-2 to D+2 SEO, analytics, payment &amp; security checklist</li>
+        <li><strong>02-landing-page-minimal.html</strong> — Clean light-mode responsive SaaS landing template</li>
+        <li><strong>03-landing-page-dark.html</strong> — High-contrast dark developer landing template</li>
+        <li><strong>04-launch-copy-kit.md</strong> — Product Hunt, Reddit, Hacker News &amp; X launch copy frameworks</li>
+        <li><strong>README.md</strong> — 5-minute customization quickstart &amp; commercial license</li>
+      </ul>
+      <p class="hint">One-time $9 payment via Gumroad. Instant ZIP download with unlimited personal &amp; commercial use.</p>
+    </div>
+    <div class="dialog-foot">
+      <button type="button" class="btn" id="closeProConfirmBtn">Maybe later</button>
+      <a href="https://4369869298025.gumroad.com/l/launchkit-mini-pro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get LaunchKit Mini Pro ($9) →</a>
+    </div>
+  </dialog>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "launchkit_mini_free_tool_v1";
+
+      const SAMPLE_DATA = {
+        projectName: "LaunchKit Mini",
+        description: "Generate SEO meta tags, robots.txt, and sitemap.xml in 3 minutes — plus ship your SaaS landing page in 48 hours.",
+        domainUrl: "https://launchkitmini.example.com",
+        ogImageUrl: "",
+        themeColor: "#2563eb",
+        twitterHandle: "@launchkitmini",
+        sitemapPaths: "/\n/pricing\n/docs\n/changelog",
+        changefreq: "weekly",
+        disallowPaths: "/api/, /admin/"
+      };
+
+      const EMPTY_DATA = {
+        projectName: "",
+        description: "",
+        domainUrl: "",
+        ogImageUrl: "",
+        themeColor: "#2563eb",
+        twitterHandle: "",
+        sitemapPaths: "/\n/pricing",
+        changefreq: "weekly",
+        disallowPaths: ""
+      };
+
+      const els = {
+        projectName: document.getElementById("projectName"),
+        description: document.getElementById("description"),
+        domainUrl: document.getElementById("domainUrl"),
+        ogImageUrl: document.getElementById("ogImageUrl"),
+        themeColorPicker: document.getElementById("themeColorPicker"),
+        themeColorHex: document.getElementById("themeColorHex"),
+        twitterHandle: document.getElementById("twitterHandle"),
+        sitemapPaths: document.getElementById("sitemapPaths"),
+        changefreq: document.getElementById("changefreq"),
+        disallowPaths: document.getElementById("disallowPaths"),
+        titleCount: document.getElementById("titleCount"),
+        descCount: document.getElementById("descCount"),
+        previewMedia: document.getElementById("previewMedia"),
+        previewImg: document.getElementById("previewImg"),
+        previewFallback: document.getElementById("previewFallback"),
+        previewFallbackTitle: document.getElementById("previewFallbackTitle"),
+        previewDomain: document.getElementById("previewDomain"),
+        previewTitle: document.getElementById("previewTitle"),
+        previewDesc: document.getElementById("previewDesc"),
+        metaCode: document.getElementById("metaCode"),
+        robotsCode: document.getElementById("robotsCode"),
+        sitemapCode: document.getElementById("sitemapCode"),
+        sitemapStats: document.getElementById("sitemapStats"),
+        liveStatus: document.getElementById("liveStatus"),
+        loadSampleBtn: document.getElementById("loadSampleBtn"),
+        resetBtn: document.getElementById("resetBtn"),
+        downloadRobotsBtn: document.getElementById("downloadRobotsBtn"),
+        downloadSitemapBtn: document.getElementById("downloadSitemapBtn"),
+        proDialog: document.getElementById("proDialog"),
+        openProDialogBtn: document.getElementById("openProDialogBtn"),
+        closeProDialogBtn: document.getElementById("closeProDialogBtn"),
+        closeProConfirmBtn: document.getElementById("closeProConfirmBtn")
+      };
+
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const panels = tabs.map((t) => document.getElementById(t.getAttribute("aria-controls")));
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function escapeXml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&apos;");
+      }
+
+      function normalizeOrigin(rawUrl) {
+        const trimmed = (rawUrl || "").trim();
+        if (!trimmed) return "https://example.com";
+        const withProto = /^https?:\/\//i.test(trimmed) ? trimmed : "https://" + trimmed;
+        try {
+          const parsed = new URL(withProto);
+          return parsed.origin;
+        } catch {
+          return "https://example.com";
+        }
+      }
+
+      function normalizeTwitterHandle(handle) {
+        const cleaned = (handle || "").trim().replace(/^@+/, "");
+        return cleaned ? "@" + cleaned : "";
+      }
+
+      function normalizeHex(hex) {
+        const v = (hex || "").trim();
+        return /^#[0-9a-fA-F]{6}$/.test(v) ? v.toLowerCase() : "#2563eb";
+      }
+
+      function getState() {
+        return {
+          projectName: els.projectName.value.trim(),
+          description: els.description.value.trim(),
+          domainUrl: els.domainUrl.value.trim(),
+          ogImageUrl: els.ogImageUrl.value.trim(),
+          themeColor: normalizeHex(els.themeColorHex.value),
+          twitterHandle: els.twitterHandle.value.trim(),
+          sitemapPaths: els.sitemapPaths.value,
+          changefreq: els.changefreq.value || "weekly",
+          disallowPaths: els.disallowPaths.value
+        };
+      }
+
+      function applyState(data) {
+        els.projectName.value = data.projectName ?? "";
+        els.description.value = data.description ?? "";
+        els.domainUrl.value = data.domainUrl ?? "";
+        els.ogImageUrl.value = data.ogImageUrl ?? "";
+        const hex = normalizeHex(data.themeColor);
+        els.themeColorPicker.value = hex;
+        els.themeColorHex.value = hex;
+        els.twitterHandle.value = data.twitterHandle ?? "";
+        els.sitemapPaths.value = data.sitemapPaths ?? "/";
+        els.changefreq.value = data.changefreq ?? "weekly";
+        els.disallowPaths.value = data.disallowPaths ?? "";
+      }
+
+      function saveState(state) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch {
+          // Ignore storage errors in private mode or restricted contexts
+        }
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            return { ...SAMPLE_DATA, ...JSON.parse(raw) };
+          }
+        } catch {
+          // Ignore parse/storage errors
+        }
+        return SAMPLE_DATA;
+      }
+
+      function buildMetaTags(state) {
+        const title = state.projectName || "My Awesome App";
+        const desc = state.description || "A short, clear description of what your product does.";
+        const origin = normalizeOrigin(state.domainUrl);
+        const canonical = origin + "/";
+        const ogImage = state.ogImageUrl || origin + "/og-image.png";
+        const handle = normalizeTwitterHandle(state.twitterHandle);
+        const theme = state.themeColor;
+
+        const lines = [
+          `<meta charset="UTF-8" />`,
+          `<meta name="viewport" content="width=device-width, initial-scale=1.0" />`,
+          `<title>${escapeHtml(title)}</title>`,
+          `<meta name="description" content="${escapeHtml(desc)}" />`,
+          `<meta name="theme-color" content="${escapeHtml(theme)}" />`,
+          `<link rel="canonical" href="${escapeHtml(canonical)}" />`,
+          ``,
+          `<!-- Open Graph -->`,
+          `<meta property="og:type" content="website" />`,
+          `<meta property="og:site_name" content="${escapeHtml(title)}" />`,
+          `<meta property="og:title" content="${escapeHtml(title)}" />`,
+          `<meta property="og:description" content="${escapeHtml(desc)}" />`,
+          `<meta property="og:url" content="${escapeHtml(canonical)}" />`,
+          `<meta property="og:image" content="${escapeHtml(ogImage)}" />`,
+          ``,
+          `<!-- Twitter / X Card -->`,
+          `<meta name="twitter:card" content="summary_large_image" />`,
+          `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
+          `<meta name="twitter:description" content="${escapeHtml(desc)}" />`,
+          `<meta name="twitter:image" content="${escapeHtml(ogImage)}" />`
+        ];
+
+        if (handle) {
+          lines.push(`<meta name="twitter:site" content="${escapeHtml(handle)}" />`);
+          lines.push(`<meta name="twitter:creator" content="${escapeHtml(handle)}" />`);
+        }
+
+        return lines.join("\n");
+      }
+
+      function buildRobotsTxt(state) {
+        const origin = normalizeOrigin(state.domainUrl);
+        const disallows = (state.disallowPaths || "")
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean)
+          .map((p) => (p.startsWith("/") ? p : "/" + p));
+
+        const lines = ["User-agent: *", "Allow: /"];
+        for (const path of disallows) {
+          lines.push(`Disallow: ${path}`);
+        }
+        lines.push("", `Sitemap: ${origin}/sitemap.xml`);
+        return lines.join("\n");
+      }
+
+      function parseSitemapPaths(rawPaths) {
+        const seen = new Set();
+        const result = [];
+        const lines = (rawPaths || "").split(/\r?\n/);
+
+        for (const rawLine of lines) {
+          const trimmed = rawLine.trim();
+          if (!trimmed) continue;
+          let path = trimmed;
+          if (/^https?:\/\//i.test(path)) {
+            try {
+              path = new URL(path).pathname || "/";
+            } catch {
+              continue;
+            }
+          }
+          if (!path.startsWith("/")) path = "/" + path;
+          if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
+          if (!seen.has(path)) {
+            seen.add(path);
+            result.push(path);
+          }
+        }
+
+        return result.length ? result : ["/"];
+      }
+
+      function buildSitemapXml(state) {
+        const origin = normalizeOrigin(state.domainUrl);
+        const paths = parseSitemapPaths(state.sitemapPaths);
+        const today = new Date().toISOString().slice(0, 10);
+
+        const urlEntries = paths.map((path) => {
+          const loc = origin + (path === "/" ? "/" : path);
+          const priority = path === "/" ? "1.0" : "0.8";
+          return [
+            "  <url>",
+            `    <loc>${escapeXml(loc)}</loc>`,
+            `    <lastmod>${today}</lastmod>`,
+            `    <changefreq>${escapeXml(state.changefreq)}</changefreq>`,
+            `    <priority>${priority}</priority>`,
+            "  </url>"
+          ].join("\n");
+        });
+
+        return {
+          count: paths.length,
+          xml: [
+            `<?xml version="1.0" encoding="UTF-8"?>`,
+            `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+            ...urlEntries,
+            `</urlset>`
+          ].join("\n")
+        };
+      }
+
+      function updateCounters(state) {
+        const titleLen = state.projectName.length;
+        const descLen = state.description.length;
+        els.titleCount.textContent = `${titleLen} / 60`;
+        els.titleCount.classList.toggle("warn", titleLen > 60);
+        els.descCount.textContent = `${descLen} / 160`;
+        els.descCount.classList.toggle("warn", descLen > 160);
+      }
+
+      function updatePreview(state) {
+        const origin = normalizeOrigin(state.domainUrl);
+        const host = origin.replace(/^https?:\/\//i, "");
+        const title = state.projectName || "Your Project Name";
+        const desc = state.description || "Your one-line description will appear here when shared on social media.";
+
+        els.previewDomain.textContent = host;
+        els.previewTitle.textContent = title;
+        els.previewDesc.textContent = desc;
+        els.previewFallbackTitle.textContent = title;
+        els.previewMedia.style.background = `linear-gradient(135deg, ${state.themeColor}, #0f172a)`;
+
+        const imgUrl = state.ogImageUrl;
+        if (imgUrl && /^https?:\/\//i.test(imgUrl)) {
+          if (els.previewImg.getAttribute("src") !== imgUrl) {
+            els.previewImg.hidden = true;
+            els.previewFallback.hidden = false;
+            els.previewImg.src = imgUrl;
+          }
+        } else {
+          els.previewImg.removeAttribute("src");
+          els.previewImg.hidden = true;
+          els.previewFallback.hidden = false;
+        }
+      }
+
+      els.previewImg.addEventListener("load", () => {
+        els.previewImg.hidden = false;
+        els.previewFallback.hidden = true;
+      });
+
+      els.previewImg.addEventListener("error", () => {
+        els.previewImg.hidden = true;
+        els.previewFallback.hidden = false;
+      });
+
+      function renderAll() {
+        const state = getState();
+        updateCounters(state);
+        updatePreview(state);
+        els.metaCode.textContent = buildMetaTags(state);
+        els.robotsCode.textContent = buildRobotsTxt(state);
+        const sitemap = buildSitemapXml(state);
+        els.sitemapCode.textContent = sitemap.xml;
+        els.sitemapStats.innerHTML = `Save at root: <code>/sitemap.xml</code> (${sitemap.count} URL${sitemap.count === 1 ? "" : "s"})`;
+        saveState(state);
+      }
+
+      function activateTab(nextTab) {
+        tabs.forEach((tab, idx) => {
+          const isSelected = tab === nextTab;
+          tab.setAttribute("aria-selected", String(isSelected));
+          tab.tabIndex = isSelected ? 0 : -1;
+          panels[idx].hidden = !isSelected;
+        });
+      }
+
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (e) => {
+          let nextIdx = null;
+          if (e.key === "ArrowRight") nextIdx = (idx + 1) % tabs.length;
+          else if (e.key === "ArrowLeft") nextIdx = (idx - 1 + tabs.length) % tabs.length;
+          else if (e.key === "Home") nextIdx = 0;
+          else if (e.key === "End") nextIdx = tabs.length - 1;
+          if (nextIdx !== null) {
+            e.preventDefault();
+            activateTab(tabs[nextIdx]);
+            tabs[nextIdx].focus();
+          }
+        });
+      });
+
+      async function copyText(text, btn) {
+        let copied = false;
+        if (navigator.clipboard && window.isSecureContext) {
+          try {
+            await navigator.clipboard.writeText(text);
+            copied = true;
+          } catch {
+            copied = false;
+          }
+        }
+        if (!copied) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            copied = document.execCommand("copy");
+          } catch {
+            copied = false;
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (copied) {
+          const prevText = btn.textContent;
+          btn.textContent = "Copied!";
+          btn.classList.add("btn-copied");
+          els.liveStatus.textContent = "Copied generated code to clipboard.";
+          setTimeout(() => {
+            btn.textContent = prevText;
+            btn.classList.remove("btn-copied");
+          }, 1600);
+        }
+      }
+
+      function downloadFile(filename, content, mimeType) {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        els.liveStatus.textContent = `Downloaded ${filename}.`;
+      }
+
+      document.querySelectorAll("[data-copy-target]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-copy-target");
+          const el = document.getElementById(targetId);
+          if (el) copyText(el.textContent, btn);
+        });
+      });
+
+      els.downloadRobotsBtn.addEventListener("click", () => {
+        downloadFile("robots.txt", els.robotsCode.textContent, "text/plain;charset=utf-8");
+      });
+
+      els.downloadSitemapBtn.addEventListener("click", () => {
+        downloadFile("sitemap.xml", els.sitemapCode.textContent, "application/xml;charset=utf-8");
+      });
+
+      els.themeColorPicker.addEventListener("input", () => {
+        els.themeColorHex.value = els.themeColorPicker.value;
+        renderAll();
+      });
+
+      els.themeColorHex.addEventListener("input", () => {
+        if (/^#[0-9a-fA-F]{6}$/.test(els.themeColorHex.value.trim())) {
+          els.themeColorPicker.value = els.themeColorHex.value.trim();
+        }
+        renderAll();
+      });
+
+      document.getElementById("generatorForm").addEventListener("input", (e) => {
+        if (e.target !== els.themeColorPicker && e.target !== els.themeColorHex) {
+          renderAll();
+        }
+      });
+
+      els.loadSampleBtn.addEventListener("click", () => {
+        applyState(SAMPLE_DATA);
+        renderAll();
+        els.liveStatus.textContent = "Loaded example project data.";
+      });
+
+      els.resetBtn.addEventListener("click", () => {
+        applyState(EMPTY_DATA);
+        renderAll();
+        els.liveStatus.textContent = "Cleared all form fields.";
+      });
+
+      els.openProDialogBtn.addEventListener("click", () => {
+        if (typeof els.proDialog.showModal === "function") {
+          els.proDialog.showModal();
+        }
+      });
+
+      [els.closeProDialogBtn, els.closeProConfirmBtn].forEach((btn) => {
+        btn.addEventListener("click", () => els.proDialog.close());
+      });
+
+      els.proDialog.addEventListener("click", (e) => {
+        if (e.target === els.proDialog) els.proDialog.close();
+      });
+
+      // Initialize
+      applyState(loadState());
+      renderAll();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nban38.github.io/launchkit-mini/sitemap.xml
